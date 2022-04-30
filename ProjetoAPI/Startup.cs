@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProjetoAPI.Data;
+using ProjetoAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +28,10 @@ namespace ProjetoAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<ContatoContext>(x => 
+                x.UseSqlServer(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProjetoAPIContato;Data Source=.\BRUNOSQL")
+            );
+            services.AddScoped<IContatosRepository, ContatoRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

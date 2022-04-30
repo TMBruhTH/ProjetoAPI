@@ -11,9 +11,13 @@ namespace ProjetoAPI.Data
     {
         public DbSet<Contato> Contatos { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ContatoContext(DbContextOptions<ContatoContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProjetoAPIContato;Data Source=.\BRUNOSQL");
+            Database.EnsureCreated();
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProjetoAPIContato;Data Source=.\BRUNOSQL");
+        //}
     }
 }
