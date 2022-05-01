@@ -10,8 +10,8 @@ using ProjetoAPI.Data;
 namespace ProjetoAPI.Migrations
 {
     [DbContext(typeof(ContatoContext))]
-    [Migration("20220430210349_initial")]
-    partial class initial
+    [Migration("20220501035930_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
